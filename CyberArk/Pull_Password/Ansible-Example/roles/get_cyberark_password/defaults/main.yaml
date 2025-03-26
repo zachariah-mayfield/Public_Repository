@@ -1,0 +1,12 @@
+# CyberArk App ID
+App_ID: "your_App_ID"
+# CyberArk Safe
+Safe: "your_Safe"
+# CyberArk Object
+Object: "your_Object"
+# CyberArk API Endpoint
+CyberArk_API_Base_URL: "https://your-cyberark-instance/api/Accounts?")
+
+# Certificate & Key
+CERT_FILE="path/to/client.pem"
+KEY_FILE="path/to/client.key"
