@@ -51,3 +51,6 @@ CyberArk_Object = Get_CyberArk_Object(Cert_and_Key_Location, CyberArk_AppID, Cyb
 
 UserName = CyberArk_Object[0].get('UserName')
 Password = CyberArk_Object[1].get('Password')
+
+print(CyberArk_Object[0].get('UserName'))
+print(CyberArk_Object[1].get('Password'))
