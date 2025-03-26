@@ -24,7 +24,7 @@ curl --silent -v -sS -k --insecure \
     --cert $CERT_FILE \
     --key $KEY_FILE \
     -H 'Content-Type: application/json' \
-    --get $CYBERARK_API_UR |
+    --get $CYBERARK_API_URL |
     grep -Po '"Content":"\K[^"]+'
 
 ###################################################################################################################
