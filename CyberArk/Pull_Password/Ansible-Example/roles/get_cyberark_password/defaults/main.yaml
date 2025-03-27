@@ -8,5 +8,5 @@ Object: "your_Object"
 CyberArk_API_Base_URL: "https://your-cyberark-instance/api/Accounts?")
 
 # Certificate & Key
-CERT_FILE="path/to/client.pem"
-KEY_FILE="path/to/client.key"
+CyberArk_Cert: "path/to/client.pem"
+CyberArk_Key: "path/to/client.key"
