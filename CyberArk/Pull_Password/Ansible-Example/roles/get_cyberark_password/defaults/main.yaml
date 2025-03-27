@@ -1,12 +1,26 @@
-# CyberArk App ID
-App_ID: "your_App_ID"
-# CyberArk Safe
-Safe: "your_Safe"
-# CyberArk Object
-Object: "your_Object"
-# CyberArk API Endpoint
-CyberArk_API_Base_URL: "https://your-cyberark-instance/api/Accounts?")
 
-# Certificate & Key
-CyberArk_Cert: "path/to/client.pem"
-CyberArk_Key: "path/to/client.key"
+CyberArk_Accounts:
+  - name: Development_CyberArk_Account
+    environment: Development
+    app_id: "your_App_ID"
+    safe: "your_Safe"
+    object: "your_Object"
+    base_url: "https://your-cyberark-instance/api/Accounts?"
+    cert_location: "path/to/client.pem"
+    key_location: "path/to/client.key"
+  - name: UAT_CyberArk_Account
+    environment: UAT
+    app_id: "your_App_ID"
+    safe: "your_Safe"
+    object: "your_Object"
+    base_url: "https://your-cyberark-instance/api/Accounts?"
+    cert_location: "path/to/client.pem"
+    key_location: "path/to/client.key"
+  - name: Production_CyberArk_Account
+    environment: Production
+    app_id: "your_App_ID"
+    safe: "your_Safe"
+    object: "your_Object"
+    base_url: "https://your-cyberark-instance/api/Accounts?"
+    cert_location: "path/to/client.pem"
+    key_location: "path/to/client.key"
