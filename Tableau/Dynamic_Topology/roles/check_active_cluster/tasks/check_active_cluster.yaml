@@ -1,0 +1,20 @@
+
+- name: Verify Tableau is running.
+  block:
+    - name: Verify Tableau is running.
+      win_shell: tsm status
+      args:
+        executable: cmd
+        chdir: "C:\\Tableau"
+      register: TSM_Status
+      ignore_errors: true
+      failed_when: not TSM_Status.stdout is search(tableau_status_running) or TSM_Status.rc !=0
+      changed_when: TSM_Status.stdout is search(tableau_status_running)
+      until: TSM_Status.stdout is search(tableau_status_running) or TSM_Status.stdout is search(tableau_status_stopped)
+      retries: 10
+      delay: 5
+
+#  rescue:
+#    - name: Rescue
+#  always:
+#    - name: Always
