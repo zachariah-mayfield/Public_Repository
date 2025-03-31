@@ -34,6 +34,37 @@ fi
 echo "I amm logged in as: $(whoamI)"
 echo "The Targeted Environment is: $targeted_environment"
 
+# # Initialize variable with a default value
+# cert_location=/path/to/CyberArk/Certificate
+# key_location=/path/to/CyberArk/Key
+# targeted_environment="develpoment"
+# # loop through command-line arguments
+# while [[ $# -gt 0 ]]: do
+#   case "$1" in
+#     --cert_location)
+#       cert_location="$2"
+#       shift 2
+#       ;;
+#     --key_location)
+#      key_location="$2"
+#       shift 2
+#       ;;
+#     --targeted_environment)
+#       targeted_environment="$2"
+#       shift 2
+#       ;;
+#       *)
+#         echo "Unknown variable: $1"
+#         exit 1
+#         ;;
+#   esac
+# done
+# # Check if the required parameter was provided.
+# if [[ -z "$cert_location" ]] || [[ -z "$key_location" ]] || [[ -z "$targeted_environment" ]]; then
+#     echo "Usage: $0 --cert_location <cert_location> --key_location <key_location> --targeted_environment <targeted_environment>"
+#     exit 1
+# fi
+
 unset no_proxy
 unset NO_PROXY
 unset no_proxy_override
@@ -43,6 +74,7 @@ unset HTTP_PROXY
 unset https_proxy
 unset HTTPS_PROXY
 
+# Run the Ansible Playbook command
 ansible-playbook ./path/to/Ansible/Playbook/main.yaml --extra-vars "{"targeted_environment": "$targeted_environment", "cert_location": "$cert_location", "key_location": "$key_location"}" -e @variables.yaml -vvv
 
 # Looking for a Zero return code.
