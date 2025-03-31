@@ -29,8 +29,8 @@ elif [ $(hostname) == "p-webserver-01" ] && [ "server_group_id_char" == "p" ] ||
         targeted_environment="production"
     fi
 else
-    echo "The hostname: $(hostname) did not match any of the server names."
-    exit 1;
+    echo "The hostname: $(hostname) did not match any of the server names.";
+    exit 1
 fi
 
 echo "I amm logged in as: $(whoamI)"
