@@ -8,8 +8,8 @@
         actions: 
         - path: "C:/path/to/run/EXE_Name.exe"
           working_directory: "C:/path/to/run"
-        username: "{{ CyberArk_UserName }}" # "{{ hostvars['localhost'][item.json.UserName] }}" # This may need to be seperated before it can become a Global Varriable. Wrote this from memory.
-        password: "{{ CyberArk_Password }}" # "{{ hostvars['localhost'][item.json.Content] }}" # This may need to be seperated before it can become a Global Varriable. Wrote this from memory.
+        username: "{{ hostvars['localhost'][CyberArk_UserName] }}" # "{{ CyberArk_UserName }}" # "{{ hostvars['localhost'][item.json.UserName] }}" # This may need to be seperated before it can become a Global Varriable. Wrote this from memory.
+        password: "{{ hostvars['localhost'][CyberArk_Content] }}" # "{{ CyberArk_Password }}" # "{{ hostvars['localhost'][item.json.Content] }}" # This may need to be seperated before it can become a Global Varriable. Wrote this from memory.
         logon_type: password
         state: present
         run_level: highest
