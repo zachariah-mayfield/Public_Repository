@@ -1,4 +1,6 @@
 #!/bin/bash
+# How to run this shell script.
+# ./Call_Ansible.sh --cert_location "/path/to/CyberArk/Certificate" --key_location "/path/to/CyberArk/Key" --targeted_environment "development"
 
 server_group_id_char=$(uname -n | cut -c1)
 if [ $(hostname) == "d-webserver-01" ] && [ "server_group_id_char" == "d" ] || [ $(hostname) == "d-fileserver-01" ] && [ "server_group_id_char" == "d" ]; then
