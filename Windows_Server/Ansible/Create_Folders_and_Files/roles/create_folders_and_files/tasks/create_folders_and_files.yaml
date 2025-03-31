@@ -28,7 +28,7 @@
 
     - name: Set Date and Time format.
     ansible.builtin.set_fact: 
-        Current_Date_Time: "{{ ansible_date_time.iso8601 | regex_replace('[-:TZ]', '' }}"
+        Current_Date_Time: "{{ ansible_date_time.iso8601 | regex_replace('[-:TZ]', '') }}"
 
     - name: Create Log File with Time and Date Stamp.
       copy:
