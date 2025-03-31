@@ -1,7 +1,3 @@
-
-
-
-
 Azure_Resource_Groups
   - name: Development_Azure
     environment: Development
@@ -12,6 +8,7 @@ Azure_Resource_Groups
     Client_ID: 'Your-Azure-Client-ID'
     Secret: 'Your-Azure-Subscription-ID'
     Resource_Group: 'Your_Azure_Resource_Group_Name'
+    Storage_Account: 'Your_Azure_Storage_Account_Name'
   - name: UAT_Azure
     environment: UAT
     Subscription_ID: 'Your-Azure-Subscription-ID'
@@ -21,6 +18,7 @@ Azure_Resource_Groups
     Client_ID: 'Your-Azure-Client-ID'
     Secret: 'Your-Azure-Subscription-ID'
     Resource_Group: 'Your_Azure_Resource_Group_Name'
+    Storage_Account: 'Your_Azure_Storage_Account_Name'
   - name: Production_Azure
     environment: Production
     Subscription_ID: 'Your-Azure-Subscription-ID'
@@ -29,4 +27,5 @@ Azure_Resource_Groups
     Object_ID: 'Your-Azure-Object-ID'
     Client_ID: 'Your-Azure-Client-ID'
     Secret: 'Your-Azure-Subscription-ID'
-    Resource_Group: 'Your_Azure_Resource_Group_Name'    
+    Resource_Group: 'Your_Azure_Resource_Group_Name'
+    Storage_Account: 'Your_Azure_Storage_Account_Name'
