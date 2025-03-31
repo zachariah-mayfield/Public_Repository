@@ -7,8 +7,8 @@
         validate_certs: false
         method: POST
         body: 
-          username: 
-          password: 
+          username: "{{ hostvars['localhost'].CyberArk_UserName }}"
+          password: "{{ hostvars['localhost'].CyberArk_Password }}
         body_format: json
         headers:
           Content-Type: application/json
