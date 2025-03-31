@@ -8,6 +8,7 @@ Azure_Resource_Groups
     Client_ID: 'Your-Azure-Client-ID'
     Secret: 'Your-Azure-Subscription-ID'
     Resource_Group: 'Your_Azure_Resource_Group_Name'
+    Application_ID: 'Your-Azure-Application-ID'
     Storage_Account: 'Your_Azure_Storage_Account_Name'
     Storage_Container: 'Your_Azure_Storage_Container_Name'
   - name: UAT_Azure
@@ -19,6 +20,7 @@ Azure_Resource_Groups
     Client_ID: 'Your-Azure-Client-ID'
     Secret: 'Your-Azure-Subscription-ID'
     Resource_Group: 'Your_Azure_Resource_Group_Name'
+    Application_ID: 'Your-Azure-Application-ID'
     Storage_Account: 'Your_Azure_Storage_Account_Name'
     Storage_Container: 'Your_Azure_Storage_Container_Name'
   - name: Production_Azure
@@ -30,5 +32,6 @@ Azure_Resource_Groups
     Client_ID: 'Your-Azure-Client-ID'
     Secret: 'Your-Azure-Subscription-ID'
     Resource_Group: 'Your_Azure_Resource_Group_Name'
+    Application_ID: 'Your-Azure-Application-ID'
     Storage_Account: 'Your_Azure_Storage_Account_Name'
     Storage_Container: 'Your_Azure_Storage_Container_Name'
