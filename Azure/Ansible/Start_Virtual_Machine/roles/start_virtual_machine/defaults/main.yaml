@@ -1,0 +1,32 @@
+
+
+
+
+Azure_Resource_Groups
+  - name: Development_Azure
+    environment: Development
+    Subscription_ID: 'Your-Azure-Subscription-ID'
+    Tenant_ID: 'Your-Azure-Tenant-ID'
+    Service_Principal: 'Your_Azure_Service_Principal_Name'
+    Object_ID: 'Your-Azure-Object-ID'
+    Client_ID: 'Your-Azure-Client-ID'
+    Secret: 'Your-Azure-Subscription-ID'
+    Resource_Group: 'Your_Azure_Resource_Group_Name'
+  - name: UAT_Azure
+    environment: UAT
+    Subscription_ID: 'Your-Azure-Subscription-ID'
+    Tenant_ID: 'Your-Azure-Tenant-ID'
+    Service_Principal: 'Your_Azure_Service_Principal_Name'
+    Object_ID: 'Your-Azure-Object-ID'
+    Client_ID: 'Your-Azure-Client-ID'
+    Secret: 'Your-Azure-Subscription-ID'
+    Resource_Group: 'Your_Azure_Resource_Group_Name'
+  - name: Production_Azure
+    environment: Production
+    Subscription_ID: 'Your-Azure-Subscription-ID'
+    Tenant_ID: 'Your-Azure-Tenant-ID'
+    Service_Principal: 'Your_Azure_Service_Principal_Name'
+    Object_ID: 'Your-Azure-Object-ID'
+    Client_ID: 'Your-Azure-Client-ID'
+    Secret: 'Your-Azure-Subscription-ID'
+    Resource_Group: 'Your_Azure_Resource_Group_Name'    
