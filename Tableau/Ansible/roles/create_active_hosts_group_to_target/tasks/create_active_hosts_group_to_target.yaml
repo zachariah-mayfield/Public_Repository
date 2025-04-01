@@ -1,3 +1,4 @@
+# Original list of targeted hosts will be defined in the Main PlayBook YAML file.
 
 - name: Creat Active_Cluster server group to target.
   block:
