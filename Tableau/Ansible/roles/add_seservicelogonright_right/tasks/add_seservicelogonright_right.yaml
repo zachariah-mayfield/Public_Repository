@@ -1,0 +1,12 @@
+Windows_User_Right: SeServiceLogonRight
+
+Tableau_RMT_Service: TableauResourceMonitoringTool
+
+Tableau_RMT_Agent_Service: TableauResourceMonitoringToolAgent
+
+
+- name: 
+  block:
+    - name: Stop Windows Server Service
+      ansible.windows.win_service:
+        name: Tableau_RMT_Service
