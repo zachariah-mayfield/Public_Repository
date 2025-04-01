@@ -8,7 +8,7 @@
         method: POST
         body: 
           username: "{{ hostvars['localhost'].CyberArk_UserName }}"
-          password: "{{ hostvars['localhost'].CyberArk_Password }}
+          password: "{{ hostvars['localhost'].CyberArk_Password }}"
         body_format: json
         headers:
           Content-Type: application/json
