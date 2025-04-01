@@ -32,7 +32,7 @@
         state: directory
       when: "{{ not Folder_Status.stat.exists }}"
 
-    - name: Bootstrap 
+    - name: Copy Bootstrap file onto all of the Targeted Tableau Servers.
       win_copy:
         dest: "{{ bootstrap_file }}"
         content: "{{ Bootstrap_Slurped_Config_file.content | b64decode }}"
