@@ -1,6 +1,6 @@
 # "C:\\Tableau\\RMT\\Setup\\"
 Tableau_RMT_Master_Location: "C:\\Tableau Resource Monitoring Tool\\Master\\"
-Gateway_URL: "https://tableau-rmt-server-name.company-domain.com/"
+Gateway_URL: "https://tableau-initial-server-node-name.company-domain.com/" # Not the Tableau RMT Server.
 
 
 - name: Tableau RMT MMaster Setup and wait for 60 seconds to complete.
