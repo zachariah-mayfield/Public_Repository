@@ -24,12 +24,14 @@
       loop: "{{ Windows_Server_Names }}"
       no_log: false
 
-- name: Tableau Server RMT MMaster Setup and Install - Main Playbook.
-  hosts: Windows_Servers # | pipe this to select the Tableau RMT Master Node.
+- name: Tableau Server RMT Agent Setup and Install - Main Playbook.
+  hosts: Windows_Servers # | pipe this to select the Tableau RMT Agent Node. | Also sort the server names in the correct order you want to add them to the Master node,
   #environment:
+  #serial: 1
+  #order: inventory
   tasks:
     - block:
-        - name: Tableau RMT Master Install
+        - name: Tableau RMT Agent Install
           include_role: 
             name: role_name
             tasks_from: location_of_tasks
@@ -50,9 +52,9 @@
             defaults_from: location_of_defaults
           #when:
 
-        - name: Tableau RMT Master Setup
+        - name: Tableau RMT Agent Setup
           include_role: 
-            name: rmt_master_setup
+            name: rmt_agent_setup
             tasks_from: location_of_tasks
             defaults_from: location_of_defaults
           #when:
