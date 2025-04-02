@@ -12,3 +12,8 @@ Postgres_Repository_Server: "tableau-Your_Company_Postgres_SQL_Server_Name-psqlf
 Server_Description: "Your-Tableau-RMT-Master-Node-Description"
 Tableau_RMT_Agent_Location: "C:\\Tableau Resource Monitoring Tool\\Agent\\"
 Tableau_RMT_Server_Bootstrap_Location: "C:\\Tableau\\Config\\TableauRMT-bootstrap.json"
+
+
+agent_already_registered: "An agent is already registered for this environment server"
+users_already_exist: "users already exist"
+successfully_registered_agent: "Successfully registered the agent"
