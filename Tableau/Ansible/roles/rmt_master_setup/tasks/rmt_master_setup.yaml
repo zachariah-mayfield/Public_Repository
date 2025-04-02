@@ -1,3 +1,7 @@
+# "C:\\Tableau\\RMT\\Setup\\"
+Tableau_RMT_Master_Location: "C:\\Tableau Resource Monitoring Tool\\Master\\"
+Gateway_URL: "https://tableau-rmt-server-name.company-domain.com/"
+
 
 - name: Tableau RMT MMaster Setup and wait for 60 seconds to complete.
   block:
@@ -18,3 +22,17 @@
     pause:
       seconds: 60
     when: RMT_Master_Setup.stdout is search(changed_search_phrase)
+
+  - name: Check for existing RMT environments.
+    ansible.windows.win_shell: |
+      "rmtadmin.cmd environments --verbose"
+    args:
+      executable: cmd
+      chdir: "{{ RMT_Admin_Master_Path}} "
+    register: RMT_Environments
+
+  - name: 
+    ansible.windows.win_shell: |
+      "rmtadmin.cmd create-env --name={{ Tableau_RMT_Environmant_Name }} --gateway-url={{ Gateway_URL }} "
+    
+    
