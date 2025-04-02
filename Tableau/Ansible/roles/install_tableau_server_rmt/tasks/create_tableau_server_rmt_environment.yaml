@@ -1,1 +1,16 @@
-## create_tableau_server_rmt_environment.yaml
+
+- name:
+  block:
+    - name: Check for existing RMT environments.
+      ansible.windows.win_shell: |
+        "rmtadmin.cmd environments --verbose"
+      args:
+        executable: cmd
+        chdir: "{{ RMT_Admin_Master_Path}} "
+      register: RMT_Environments
+    
+    # "rmtadmin.cmd create-env --name={{ Tableau_RMT_Environmant_Name }} --gateway-url={{ Gateway_URL }} --version={{  }} --non-interactive true --api-username={{  }} --api-password={{  }} --repository-server={{  }} --repository-port=8060 --verbose"
+    - name: 
+      ansible.windows.win_shell: |
+        "rmtadmin.cmd create-env --name={{ Tableau_RMT_Environmant_Name }} --gateway-url={{ Gateway_URL }} --version={{  }} --non-interactive true --api-username={{  }} --api-password={{  }} --repository-server={{  }} --repository-database=8060 --verbose  "
+    
