@@ -1,4 +1,3 @@
-Server_Description: "Your-Tableau-RMT-Master-Node-Description"
 
 - name: Tableau RMT Agent Setup and wait for 60 seconds to complete.
   block:
