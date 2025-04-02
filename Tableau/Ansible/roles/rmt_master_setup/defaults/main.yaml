@@ -8,3 +8,5 @@ Tableau_RMT_Server_Certificate_Name: "TableauRMT"
 search_phrase: "Skipping admin user creation - users already exist"
 users_already_exist: "users already exist"
 changed_search_phrase: "Setup complete"
+
+Postgres_Repository_Server: "tableau-Your_Company_Postgres_SQL_Server_Name-psqlflexibleserver.postgres.database.azure.com"
