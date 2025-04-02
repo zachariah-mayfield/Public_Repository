@@ -1,0 +1,21 @@
+Server_Description: "Your-Tableau-RMT-Master-Node-Description"
+
+- name: Tableau RMT Agent Setup and wait for 60 seconds to complete.
+  block:
+    - name: Tableau RMT Agent Setup
+      ansible.windows.win_shell: |
+        "{{ rmtadmin.cmd register --username={{ hostvars['localhost'].CyberArk_UserName }} --password={{ hostvars['localhost'].CyberArk_Password }} --server-name={{ ansible_fqdn | replace(".company-domain.com", ""}} --server-description={{ Server_Description }} --verbose
+      args: 
+        executable: cmd
+        chdir: "{{ Tableau_RMT_Agent_Location }}"
+      register: RMT_Agent_Setup
+      failed_when: not RMT_Agent_Setup.stdout is search(search_phrase) and RMT_Agent_Setup.rc != 0
+      until: RMT_Agent_Setup.stdout is search(search_phrase) or RMT_Agent_Setup.stdout is search(search_phrase)
+      retries: 5
+      delay: 5
+      changed_when: RMT_Agent_Setup.stdout is search(changed_search_phrase)
+
+  - name: Wait 60 Seconds for Tableau RMT Agent Setup to complete.
+    pause:
+      seconds: 60
+    when: RMT_Agent_Setup.stdout is search(changed_search_phrase)
