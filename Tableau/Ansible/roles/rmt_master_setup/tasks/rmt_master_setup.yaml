@@ -14,7 +14,7 @@
       delay: 5
       changed_when: RMT_Master_Setup.stdout is search(changed_search_phrase)
 
-  - name: Wait 60 Seconds for Tableau RMT MMaster Setup to complete.
+  - name: Wait 60 Seconds for Tableau RMT Master Setup to complete.
     pause:
       seconds: 60
     when: RMT_Master_Setup.stdout is search(changed_search_phrase)
