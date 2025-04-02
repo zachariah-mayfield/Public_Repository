@@ -1,10 +1,3 @@
-# This task should be run on all hosts.
-- name: Slurp Bootstrap Config File for Tableau RMT from the Tableau RMT Master Node.
-  ansible.builtin.slurp:
-    src: "{{ bootstrap_file }}"
-  delegate_to: "{{ Tableau_RMT_Master_Node }}"
-  register: Bootstrap_Slurped_Config_file
-
 # This task block should be run on all hosts, except the Tableau RMT Master Node.
 - name: Find bootstrap_files on a Windows Server that match a regex pattern.
   block:
