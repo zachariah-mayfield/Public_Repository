@@ -55,9 +55,9 @@
             defaults_from: location_of_defaults
           #when:
 
-        - name: Copy Cert Files
+        - name: Copy Bootstrap File from Tableau RMT Master Node to Tableau RMT Agent Node.
           include_role: 
-            name: copy_cert_files
+            name: role_name
             tasks_from: location_of_tasks
             defaults_from: location_of_defaults
           #when:
@@ -65,20 +65,6 @@
         - name: Tableau RMT Agent Setup
           include_role: 
             name: rmt_agent_setup
-            tasks_from: location_of_tasks
-            defaults_from: location_of_defaults
-          #when:
-
-        - name: Create Tableau Server RMT Environment
-          include_role: 
-            name: create_tableau_server_rmt_environment
-            tasks_from: location_of_tasks
-            defaults_from: location_of_defaults
-          #when:
-
-        - name: Generate Tableau RMT Bootstrap File
-          include_role: 
-            name: generate_bootstrap_file
             tasks_from: location_of_tasks
             defaults_from: location_of_defaults
           #when:
