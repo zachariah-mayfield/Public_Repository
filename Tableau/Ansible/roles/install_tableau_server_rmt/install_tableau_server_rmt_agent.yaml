@@ -24,11 +24,21 @@
       loop: "{{ Windows_Server_Names }}"
       no_log: false
 
+# This task should be run on all hosts.
+- name: Slurp Bootstrap Config File for Tableau RMT from the Tableau RMT Master Node.
+  hosts: Windows_Servers
+  tasks: 
+  - name: Slurp Bootstrap Config File for Tableau RMT from the Tableau RMT Master Node.
+    ansible.builtin.slurp:
+      src: "{{ bootstrap_file }}"
+    delegate_to: "{{ Tableau_RMT_Master_Node }}"
+    register: Bootstrap_Slurped_Config_file
+
 - name: Tableau Server RMT Agent Setup and Install - Main Playbook.
-  hosts: Windows_Servers # | pipe this to select the Tableau RMT Agent Node. | Also sort the server names in the correct order you want to add them to the Master node,
+  hosts: Windows_Servers # | pipe this to select the Tableau RMT Agent Nodes only "excluding the Tableau RMT Master Node". | Also sort the server names in the correct order you want to add them to the Master node,
   #environment:
-  #serial: 1
-  #order: inventory
+  serial: 1
+  order: inventory
   tasks:
     - block:
         - name: Tableau RMT Agent Install
