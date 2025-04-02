@@ -1,4 +1,4 @@
-bootstrap_file: "C:\\Tableau\\Tableau-RMT-bootstrap.json"
+
 
 - name: Find bootstrap_files on a Windows Server that match a regex pattern.
   block:
