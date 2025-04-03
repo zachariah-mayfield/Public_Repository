@@ -69,3 +69,5 @@ Function Get-Tableau_API_Token {
 }# END Function Get-Tableau_API_Token
 
 #region Function Get-Tableau_API_Token
+
+Stop-Transcript
