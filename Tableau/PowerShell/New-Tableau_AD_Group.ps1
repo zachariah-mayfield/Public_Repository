@@ -10,6 +10,8 @@ Start-Transcript -Path "C:\Logs\Tableau_$(Get-Date).log"
 
 $Tableau_API_Token = Get-Tableau_API_Token # Run this function
 $Tableau_Site_ID = Get-Tableau_Sites # Run this function and Pipe the return to a Select and select the Tableau Site ID.
+$Tableau_Group_Namme = "Tableau-Group-Name"
+$Tableau_Site_Role = "Tableau-Site-Role"
 $TableauServerName = "Your-Company-Tableau-Server-Name"
 $Environment = 'Development'
 
