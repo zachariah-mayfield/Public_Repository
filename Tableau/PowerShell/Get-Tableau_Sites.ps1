@@ -45,7 +45,7 @@ Function Get-Tableau_Sites {
       $Headers.Add("X-Tableau-Auth", "$($Tableau_API_Token)")
       # Tableau Server API Call
       $Tableau_Sites_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/sites"
-      $Tableau_Sites = ((Invoke-RestMethod $Tableau_Sites_URL -Method 'GET' -Headers $Headers -Body $Body -ErrorAction Stop).TsResponse.Sites.site)
+      $Tableau_Sites = ((Invoke-RestMethod $Tableau_Sites_URL -Method 'GET' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.Sites.site)
       $Tableau_Sites
 #endregion Get Tableau Sites
     }# END TRY
