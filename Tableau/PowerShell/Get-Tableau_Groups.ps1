@@ -10,8 +10,8 @@ IF (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.Windows.Ident
 
 Start-Transcript -Path "C:\Logs\Tableau_$(Get-Date).log"
 
-$Tableau_API_UserName = CyberArk_UserName
-$Tableau_API_Password = CyberArk_Password
+$Tableau_API_Token = Get-Tableau_API_Token # Run this function
+$Tableau_Site_ID = Get-Tableau_Sites # Run this function and Pipe the return to a Select and select the Tableau Site ID.
 $TableauServerName = "Your-Company-Tableau-Server-Name"
 $Environment = 'Development'
 
@@ -22,6 +22,9 @@ Function Get-Tableau_Groups {
     # $Tableau_API_Token
     [Parameter(Mandatory=$true)
     [string]$Tableau_API_Token,
+    # $Tableau_Site_ID
+    [Parameter(Mandatory=$true)
+    [string]$Tableau_Site_ID,
     # $TableauServerName
     [Parameter(Mandatory=$true)
     [string]$TableauServerName,
@@ -40,16 +43,16 @@ Function Get-Tableau_Groups {
   }# END Begin
   Process {
     Try {
-#region Get Tableau Sites
+#region Get-Tableau_Groups
       # Headers
       $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
       $Headers.Add("Content-Type", "application/xml")
       $Headers.Add("X-Tableau-Auth", "$($Tableau_API_Token)")
       # Tableau Server API Call
-      $Tableau_Sites_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/sites"
-      $Tableau_Sites = ((Invoke-RestMethod $Tableau_Sites_URL -Method 'GET' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.Sites.site)
-      $Tableau_Sites
-#endregion Get Tableau Sites
+      $Tableau_Groups_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/sites/$($Tableau_Site_ID)/groups"
+      $Tableau_Groups = ((Invoke-RestMethod $Tableau_Groups_URL -Method 'GET' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.groups.group)
+      $Tableau_Groups
+#endregion Get-Tableau_Groups
     }# END TRY
     Catch {
       IF ($null -ne $Error[0].Exception.Message) {
