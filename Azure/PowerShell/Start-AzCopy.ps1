@@ -60,6 +60,17 @@ Function Start-AzCopy {
     $env:AZCOPY_SPA_CLIENT_SECRET = $Secret
     C:\AzCopy.exe login --service-principal $Service_Principal --application-id $Application_ID --tenant-id $Tenant_ID
     C:\AzCopy.exe copy $Blob_File $SAS_URL
+
+    
+    $AzBlob_List = ($C:\AzCopy.exe list $SAS_URL --properties 'LastModifiedTime' | Where-Object {$_ -like "*.tsbak" -or $_ -like "*.json"})
+
+    $AzBlobs = ForEach ($AzBlob in $AzBlob_List) {
+      $New_AzBlob = ($AzBlob) -split ";"
+      $New_AzBlob_Name_Object = [PSCustomObject]@{
+        AzBlobName = ($New_AzBlob -replace "INFO: " -split ",")[0]
+        LastModifiedTime = [datetime]((($New_AzBlob -replace " LastModifiedTime: ") -replace '\+' -replace '0000 GMT' -split ",")[1])
+    }# END ForEach
+    $New_AzBlob_Name_Object
   }# END Process
 
   End {}
