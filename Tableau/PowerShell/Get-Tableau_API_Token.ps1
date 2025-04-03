@@ -33,11 +33,11 @@ Function Get-Tableau_API_Token {
     # $TableauServerAPI_Version
     [Parameter(Mandatory=$true)
     [string]$TableauServerAPI_Version
-  )
+  )# END Param
   Begin {
     # Set the Security Protocol Type
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  }
+  }# END Begin
   Process {
     Try {
 #region Tableau API Token
