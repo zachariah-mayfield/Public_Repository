@@ -13,6 +13,7 @@ $Tableau_API_Password = CyberArk_Password
 $TableauServerName = "Your-Company-Tableau-Server-Name"
 $Environment = 'Development'
 
+#region Function Get-Tableau_API_Token
 Function Get-Tableau_API_Token {
   [CmdletBinding()]
   Param (
@@ -37,14 +38,29 @@ Function Get-Tableau_API_Token {
     # Set the Security Protocol Type
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     Try {
+#region Tableau API Token
+      # Headers
       $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
       $Headers.Add("Content-Type", "application/xml")
-
+      # Body
       $Body = "<tsRequest>
-      `n    <credentials name=`"$($Tableau_API_UserName)`" password=`"$($Tableau_API_Password)
-      "
-      
+      `n    <credentials name=`"$($Tableau_API_UserName)`" password=`"$($Tableau_API_Password)`">
+      `n    <site contentUrl=`"`" />
+      `n    </credentials>
+      `n</tsRequest>"
+      # Tableau Server API Call
       $Tableau_API_Token = ((Invoke-RestMethod "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/auth/signin/" -Method 'POST' -Headers $Headers -Body $Body -ErrorAction Stop).TsResponse.Credentials.token)
       $Tableau_API_Token
     }# END TRY
     Catch {
+      IF ($null -ne $Error[0].Exception.Message) {
+        $Error_Exception = ($_.Exception | Select *)
+        $Error_Exception
+      }# END IF
+      $LASTEXITCODE
+      Stop-Transcript
+      EXIT $LASTEXITCODE
+    }# END Catch
+    
+#endregion Tableau API Token
+#region Function Get-Tableau_API_Token
