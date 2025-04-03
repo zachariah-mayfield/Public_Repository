@@ -60,7 +60,7 @@ Function Get-Tableau_Sites {
     }# END Catch
   }# END Process
   End {}
-}# END Function Function Get-Tableau_Sites
-#endregion Function Function Get-Tableau_Sites
+}# END Function Get-Tableau_Sites
+#endregion Function Get-Tableau_Sites
 
 Stop-Transcript
