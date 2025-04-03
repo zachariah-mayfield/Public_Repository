@@ -37,6 +37,8 @@ Function Get-Tableau_API_Token {
   Begin {
     # Set the Security Protocol Type
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+  }
+  Process {
     Try {
 #region Tableau API Token
       # Headers
@@ -51,6 +53,7 @@ Function Get-Tableau_API_Token {
       # Tableau Server API Call
       $Tableau_API_Token = ((Invoke-RestMethod "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/auth/signin/" -Method 'POST' -Headers $Headers -Body $Body -ErrorAction Stop).TsResponse.Credentials.token)
       $Tableau_API_Token
+#endregion Tableau API Token      
     }# END TRY
     Catch {
       IF ($null -ne $Error[0].Exception.Message) {
@@ -61,6 +64,8 @@ Function Get-Tableau_API_Token {
       Stop-Transcript
       EXIT $LASTEXITCODE
     }# END Catch
-    
-#endregion Tableau API Token
+  }# END Process
+  End {}
+}# END Function Get-Tableau_API_Token
+
 #region Function Get-Tableau_API_Token
