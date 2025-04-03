@@ -1,5 +1,3 @@
-Get-Tableau_Groups.ps1
-
 Set-ExecutionPolicy RemoteSigned -force
 
 IF (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.Windows.Identity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
