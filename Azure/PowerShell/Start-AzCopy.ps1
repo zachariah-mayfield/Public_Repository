@@ -61,7 +61,6 @@ Function Start-AzCopy {
     C:\AzCopy.exe login --service-principal $Service_Principal --application-id $Application_ID --tenant-id $Tenant_ID
     C:\AzCopy.exe copy $Blob_File $SAS_URL
 
-    
     $AzBlob_List = ($C:\AzCopy.exe list $SAS_URL --properties 'LastModifiedTime' | Where-Object {$_ -like "*.tsbak" -or $_ -like "*.json"})
 
     $AzBlobs = ForEach ($AzBlob in $AzBlob_List) {
@@ -69,10 +68,16 @@ Function Start-AzCopy {
       $New_AzBlob_Name_Object = [PSCustomObject]@{
         AzBlobName = ($New_AzBlob -replace "INFO: " -split ",")[0]
         LastModifiedTime = [datetime]((($New_AzBlob -replace " LastModifiedTime: ") -replace '\+' -replace '0000 GMT' -split ",")[1])
+      }# END $New_AzBlob_Name_Object
+      $New_AzBlob_Name_Object
     }# END ForEach
-    $New_AzBlob_Name_Object
-  }# END Process
+    $Old_Files = ($New_AzBlob_Name_Object | Where-Object {$_.AzBlobName -like "*.json" -or $_.AzBlobName -like "*.tsbak" -and $_.LastModifiedTime -lt (Get-Date).AddDays(-8)}).AzBlobName
 
+    ForEach ($Old_File in $Old_Files) {
+      $SAS_URL_Remove_Blob = "https://$(Storage_Account).blob.core.windows.net/$($Storage_Container)/$($Old_File)"
+      Write-Output "AzCopy REMOVE file: $($Old_File) from Azure Storage Account: $($Storage_Account) from the container: $($Storage_Container)"
+      C:\AzCopy.exe rm $SAS_URL_Remove_Blob --dry-run
+    }# END ForEach
+  }# END Process
   End {}
 }# END Function Start-AzCopy
-
