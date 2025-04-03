@@ -11,11 +11,11 @@ Function New-Windows_Event_Log {
     [Parameter(Mandatory=$true)
     [string]$EventLogName,
     # $EventType
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [ValidateSet('Error', 'Information')]
     [string]$EventType,
     # $EventMessage
-    [Parameter(Mandatory=$true)
+    [Parameter(Mandatory=$false)
     [string]$EventMessage,
     # $EventSource
     [Parameter(Mandatory=$true)
