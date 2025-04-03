@@ -1,5 +1,11 @@
 Set-ExecutionPolicy RemoteSigned -force
 
+IF (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.Windows.Identity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+  $Arguments = "& '" + $myinvocation.mycommand.definition + "'"
+  Start-Process powershell -Verb runAs -ArgumentList $Arguments
+  Break
+}
+
 $EventLogName = "Application"
 $EventSource = "Tableau_Backup"
 $Successful_Message = $true or $False # set this to what you want the outcome to be below.
