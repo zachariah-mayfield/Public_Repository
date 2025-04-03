@@ -52,7 +52,7 @@ Function Get-Tableau_API_Token {
       `n</tsRequest>"
       # Tableau Server API Call
       $Tableau_Auth_Token_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/auth/signin/"
-      $Tableau_API_Token = ((Invoke-RestMethod $Tableau_Auth_Token_URL -Method 'POST' -Headers $Headers -Body $Body -ErrorAction Stop).TsResponse.Credentials.token)
+      $Tableau_API_Token = ((Invoke-RestMethod $Tableau_Auth_Token_URL -Method 'POST' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.Credentials.token)
       $Tableau_API_Token
 #endregion Tableau API Token      
     }# END TRY
