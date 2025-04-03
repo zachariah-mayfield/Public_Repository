@@ -6,6 +6,8 @@ IF (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.Windows.Ident
   Break
 }
 
+Start-Transcript -Path "C:\Logs\Tableau-Backup_$(Get-Date).log"
+
 $EventLogName = "Application"
 $EventSource = "Tableau_Backup"
 $Successful_Message = $true or $False # set this to what you want the outcome to be below.
@@ -74,3 +76,5 @@ Function New-Windows_Event_Log {
     }# END Catch
   }
 }# END Function New-Windows_Event_Log
+
+Stop-Transcript
