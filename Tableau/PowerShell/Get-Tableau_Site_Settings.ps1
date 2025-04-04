@@ -14,7 +14,7 @@ $TableauServerName = "Your-Company-Tableau-Server-Name"
 $Environment = 'Development'
 
 #region Function Get-Tableau_Site_Settings
-Function New-Tableau_AD_Group {
+Function Get-Tableau_Site_Settings {
   [CmdletBinding()]
   Param (
     # $Tableau_API_Token
