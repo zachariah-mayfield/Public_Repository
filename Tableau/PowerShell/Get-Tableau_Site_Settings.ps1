@@ -58,7 +58,7 @@ Function Get-Tableau_Site_Settings {
     }# END TRY
     Catch {
       IF ($Error.exception.message -Like "*(409) Conflict*") {
-        Write-Host -ForegroudColor Yellow "Group $($Tableau_Group_Namme) Already exists.
+        Write-Host -ForegroudColor Yellow "Group $($Tableau_Group_Namme) Already exists."
       }# END IF
       elseif ($null -ne $Error[0].Exception.Message) {
         $Error_Exception = ($_.Exception | Select *)
