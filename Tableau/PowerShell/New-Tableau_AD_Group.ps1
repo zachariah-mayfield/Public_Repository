@@ -15,7 +15,7 @@ $Tableau_Site_Role = "Tableau-Site-Role"
 $TableauServerName = "Your-Company-Tableau-Server-Name"
 $Environment = 'Development'
 
-#region New-Tableau_AD_Group
+#region Function New-Tableau_AD_Group
 Function New-Tableau_AD_Group {
   [CmdletBinding()]
   Param (
