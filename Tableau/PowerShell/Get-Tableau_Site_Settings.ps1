@@ -48,7 +48,7 @@ Function Get-Tableau_Site_Settings {
       $Headers.Add("X-Tableau-Auth", "$($Tableau_API_Token)")
       # Tableau Server API Call
       $Tableau_Site_Settings_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/sites/$($Tableau_Site_ID)"
-      $Tableau_Site_Settings_Response = ((Invoke-RestMethod $Tableau_Groups_URL -Method 'GET' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.site)
+      $Tableau_Site_Settings_Response = ((Invoke-RestMethod $Tableau_Site_Settings_URL -Method 'GET' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.site)
       $Tableau_Site_Settings = New-Object PSObject
       $Tableau_Site_Settings | Add-Member -type NoteProperty -name ExtractEncryptionMode -Value $Tableau_Site_Settings_Response.extractEncryptionMode
       $Tableau_Site_Settings | Add-Member -type NoteProperty -name Site_ID -Value $Tableau_Site_ID
