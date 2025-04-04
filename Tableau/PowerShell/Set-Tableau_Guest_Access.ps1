@@ -56,9 +56,9 @@ Function Set-Tableau_Guest_Access {
       `n  <guestAccessEnabled=`"$($Tableau_Site_Guest_Access_State)`" />
       `n</tsRequest>"
       # Tableau Server API Call
-      $Set_Tableau_Site_Settings_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/sites/$($Tableau_Site_ID)"
-      $Set_Tableau_Site_Settings_URL_Response = ((Invoke-RestMethod $Set_Tableau_Site_Settings_URL -Method 'PUT' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.site | ConverTo-Json)
-      $Set_Tableau_Site_Settings_URL_Response
+      $Set_Tableau_Site_Guest_Access_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/sites/$($Tableau_Site_ID)"
+      $Set_Tableau_Site_Guest_Access_URL_Response = ((Invoke-RestMethod $Set_Tableau_Site_Guest_Access_URL -Method 'PUT' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.site | ConverTo-Json)
+      $Set_Tableau_Site_Guest_Access_URL_Response
 #endregion Set-Tableau_Guest_Access
     }# END TRY
     Catch {
