@@ -57,13 +57,10 @@ Function Get-Tableau_Site_Settings {
 #endregion Get-Tableau_Site_Settings
     }# END TRY
     Catch {
-      IF ($Error.exception.message -Like "*(409) Conflict*") {
-        Write-Host -ForegroudColor Yellow "Group $($Tableau_Group_Namme) Already exists."
-      }# END IF
-      elseif ($null -ne $Error[0].Exception.Message) {
+      IF ($null -ne $Error[0].Exception.Message) {
         $Error_Exception = ($_.Exception | Select *)
         $Error_Exception
-      }
+      }# END IF
       $LASTEXITCODE
       Stop-Transcript
       EXIT $LASTEXITCODE
