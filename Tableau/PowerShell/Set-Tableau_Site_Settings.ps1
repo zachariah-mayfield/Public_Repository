@@ -25,6 +25,7 @@ Function Set-Tableau_Site_Settings {
     [string]$Tableau_Site_ID,
     # $Tableau_Site_Extracts_Encryption_State
     [Parameter(Mandatory=$true)
+    [ValidateSet('encrypt-extracts', 'decrypt-extracts')]
     [string]$Tableau_Site_Extracts_Encryption_State,
     # $TableauServerName
     [Parameter(Mandatory=$true)
@@ -52,16 +53,18 @@ Function Set-Tableau_Site_Settings {
       # Tableau Server API Call
       $Set_Tableau_Site_Settings_URL = "https://$($TableauServerName).$($Environment).Company-Domain.com/api/$($TableauServerAPI_Version)/sites/$($Tableau_Site_ID)/$($Tableau_Site_Extracts_Encryption_State)"
       $Set_Tableau_Site_Settings_URL_Response = ((Invoke-RestMethod $Set_Tableau_Site_Settings_URL -Method 'POST' -Headers $Headers -Body $Body -ErrorAction Stop).tsResponse.site)
+      $Set_Tableau_Site_Settings_URL_Response
 #endregion Set-Tableau_Site_Settings
     }# END TRY
     Catch {
-      IF ($Error.exception.message -Like "*(409) Conflict*") {
-        Write-Host -ForegroudColor Yellow "Group $($Tableau_Group_Namme) Already exists.
+      IF ($null -ne $Error[0].Exception.Message) {
+        $Error_Exception = $_.Exception.Response.GetResponseStream()
+        $ResponseStream_Reader = New-Object System.IO.StreamReader($Error_Exception)
+        $ResponseStream_Reader.baseStream.Position = 0
+        $ResponseStream_Reader.DiscardBufferedData()
+        $ResponseBody = (($ResponseStream_Reader.ReadToEnd() -split '<detail>')[1] -repalce '<detail></error></tsResponse>','')
+        return $ResponseBody
       }# END IF
-      elseif ($null -ne $Error[0].Exception.Message) {
-        $Error_Exception = ($_.Exception | Select *)
-        $Error_Exception
-      }
       $LASTEXITCODE
       Stop-Transcript
       EXIT $LASTEXITCODE
