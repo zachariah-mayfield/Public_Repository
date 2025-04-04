@@ -10,6 +10,7 @@ Start-Transcript -Path "C:\Logs\Tableau_$(Get-Date).log"
 
 $Tableau_API_Token = Get-Tableau_API_Token # Run this function
 $Tableau_Site_ID = Get-Tableau_Sites # Run this function and Pipe the return to a Select and select the Tableau Site ID.
+$Tableau_Site_Extracts_Encryption_State = encrypt-extracts
 $TableauServerName = "Your-Company-Tableau-Server-Name"
 $Environment = 'Development'
 
