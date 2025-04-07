@@ -1,57 +1,55 @@
 import requests
-import logging
-from datetime import datetime
-import ctypes
-import sys
-import os
+import xml.etree.ElementTree as ET
 
-# Logging setup
-log_file = fr"C:\Logs\Tableau_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
-logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s %(message)s')
-logging.info("Script started")
+# Function to get Tableau API Token
+def get_tableau_api_token(tableau_api_username, tableau_api_password, tableau_server_name, environment, tableau_server_api_version):
+        return tableau_api_token
 
-# Admin check
-def is_admin():
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return False
 
-if not is_admin():
-    logging.info("Restarting script with admin privileges...")
-    script = os.path.abspath(sys.argv[0])
-    params = " ".join([f'"{arg}"' for arg in sys.argv[1:]])
-    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, f'"{script}" {params}', None, 1)
-    sys.exit()
+def get_tableau_sites(tableau_api_token, tableau_server_name, environment, tableau_server_api_version):
+    # Set URL for Tableau Sites
+    tableau_sites_url = f"https://{tableau_server_name}.{environment}.Company-Domain.com/api/{tableau_server_api_version}/sites"
 
-# Example config (would be fetched from CyberArk in a full implementation)
-Tableau_API_Token = "your_tableau_auth_token"
-TableauServerName = "your-tableau-server-name"
-Environment = "Development"
-TableauServerAPI_Version = "3.18"  # or your actual version
+    # Prepare headers
+    headers = {
+        'Content-Type': 'application/xml',
+        'X-Tableau-Auth': tableau_api_token,
+    }
 
-# Get Tableau Sites
-def get_tableau_sites(token, server_name, environment, api_version):
-    try:
-        headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "X-Tableau-Auth": token
-        }
-
-        url = f"https://{server_name}.{environment}.Company-Domain.com/api/{api_version}/sites"
-        response = requests.get(url, headers=headers)
+    # Make the GET request to retrieve the sites
+    response = requests.get(tableau_sites_url, headers=headers)
+    
+    if response.status_code == 200:
+        # Parse the XML response
+        root = ET.fromstring(response.content)
+        sites = root.findall(".//site")
+        site_details = []
+        
+        for site in sites:
+            site_details.append({
+                "id": site.get("id"),
+                "name": site.get("name"),
+                "contentUrl": site.get("contentUrl")
+            })
+        
+        return site_details
+    else:
         response.raise_for_status()
 
-        data = response.json()
-        sites = data.get("sites", {}).get("site", [])
-        logging.info(f"Retrieved {len(sites)} sites.")
-        return sites
-
-    except requests.exceptions.RequestException as e:
-        logging.error(f"Request failed: {e}")
-        sys.exit(1)
-
 # Example usage
-# sites = get_tableau_sites(Tableau_API_Token, TableauServerName, Environment, TableauServerAPI_Version)
-# print(sites)
+tableau_api_username = "CyberArk_UserName"  # Replace with actual value
+tableau_api_password = "CyberArk_Password"  # Replace with actual value
+tableau_server_name = "Your-Company-Tableau-Server-Name"
+environment = "Development"
+tableau_server_api_version = "3.10"  # Adjust API version as needed
+
+try:
+    # Get API Token
+    tableau_api_token = get_tableau_api_token(tableau_api_username, tableau_api_password, tableau_server_name, environment, tableau_server_api_version)
+    
+    # Get Sites
+    tableau_sites = get_tableau_sites(tableau_api_token, tableau_server_name, environment, tableau_server_api_version)
+    for site in tableau_sites:
+        print(f"Site ID: {site['id']}, Site Name: {site['name']}, Content URL: {site['contentUrl']}")
+except Exception as e:
+    print(f"An error occurred: {e}")
