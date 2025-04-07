@@ -53,6 +53,7 @@ Environment:
         follow_redirects: all
         return_content: true
       register: Connect_To_Tableau
+      failed_when: Connect_To_Tableau.status !=200
 
     - name: Set Ansible Fact Tableau_Authentication_Token
       ansible.builtin.set_fact:
