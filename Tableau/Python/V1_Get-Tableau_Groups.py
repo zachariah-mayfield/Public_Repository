@@ -1,11 +1,11 @@
 import ctypes
 import sys
 import os
-import logging
 import requests
+import logging
 from datetime import datetime
 
-# Set up logging
+# Setup logging
 log_file = fr"C:\Logs\Tableau_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
 logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s %(message)s')
 logging.info("Script started")
@@ -18,51 +18,53 @@ def is_admin():
         return False
 
 if not is_admin():
-    logging.info("Restarting script with admin privileges...")
+    logging.info("Restarting with admin privileges...")
     script = os.path.abspath(sys.argv[0])
     params = " ".join([f'"{arg}"' for arg in sys.argv[1:]])
     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, f'"{script}" {params}', None, 1)
     sys.exit()
 
-# Example config values
+# Example values (replace as needed)
 TableauServerName = "your-tableau-server-name"
 Environment = "Development"
-TableauServerAPI_Version = "3.18"  # replace with your actual version
+TableauServerAPI_Version = "3.18"
+Tableau_Site_ID = "your_site_id"
 
-# Mock functions — replace these with real implementations
+# Mock function — replace with actual logic
 def get_tableau_api_token():
-    # Call your CyberArk function or Tableau sign-in logic here
     return "your_tableau_auth_token"
 
-def get_tableau_site_id():
-    # Call to get Tableau sites and extract the one you need
-    return "your_site_id"
-
-# Main function to get Tableau groups
+# Get Tableau Groups function
 def get_tableau_groups(token, site_id, server_name, environment, api_version):
     try:
         headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
+            "Content-Type": "application/xml",
             "X-Tableau-Auth": token
         }
 
         url = f"https://{server_name}.{environment}.Company-Domain.com/api/{api_version}/sites/{site_id}/groups"
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
 
-        groups = response.json().get("groups", {}).get("group", [])
-        logging.info(f"Retrieved {len(groups)} groups.")
-        return groups
+        response = requests.get(url, headers=headers)
+
+        response.raise_for_status()
+        groups_info = response.json().get("tsResponse", {}).get("groups", {}).get("group", [])
+        
+        logging.info(f"Groups retrieved: {groups_info}")
+        return groups_info
 
     except requests.exceptions.RequestException as e:
         logging.error(f"Request failed: {e}")
         sys.exit(1)
 
-# Example usage
-Tableau_API_Token = get_tableau_api_token()
-Tableau_Site_ID = get_tableau_site_id()
-groups = get_tableau_groups(Tableau_API_Token, Tableau_Site_ID, TableauServerName, Environment, TableauServerAPI_Version)
+# Run the function
+token = get_tableau_api_token()
+groups = get_tableau_groups(
+    token,
+    Tableau_Site_ID,
+    TableauServerName,
+    Environment,
+    TableauServerAPI_Version
+)
 
-# For testing
+# Optional print for visibility
 # print(groups)
