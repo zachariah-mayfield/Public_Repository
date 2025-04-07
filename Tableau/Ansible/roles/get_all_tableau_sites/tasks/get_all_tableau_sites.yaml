@@ -23,7 +23,7 @@
       ansible.builtin.set_fact:
         Tableau_Sites: "{{ Tableau_Sites_Response.json.sites.site }}"
         Tableau_Site_Info: "{{ Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' }}"
-        Tableau_Sites_Name: "{{ (Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).name }}"
-        Tableau_Sites_ID: "{{ (Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).id }}"
+        Tableau_Site_Name: "{{ (Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).name }}"
+        Tableau_Site_ID: "{{ (Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).id }}"
       delegate_to: localhost
       run_once: true
