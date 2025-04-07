@@ -30,9 +30,9 @@ Environment = "Development"
 TableauServerAPI_Version = "3.18"
 Tableau_Site_ID = "your_site_id"
 
-# Mock function — replace with actual logic
-def get_tableau_api_token():
-    return "your_tableau_auth_token"
+# Function to get Tableau API Token
+def get_tableau_api_token(tableau_api_username, tableau_api_password, tableau_server_name, environment, tableau_server_api_version):
+        return tableau_api_token
 
 # Get Tableau Groups function
 def get_tableau_groups(token, site_id, server_name, environment, api_version):
