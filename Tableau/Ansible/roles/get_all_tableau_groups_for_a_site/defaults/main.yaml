@@ -1,1 +1,12 @@
 
+Tableau_API_UserName: "{{ hostvars['localhost'].CyberArk_UserName }}"
+Tableau_API_Password: "{{ hostvars['localhost'].CyberArk_Password }}"
+TableauServerName: "Your-Company-Tableau-Server-Name"
+# "This is generated in another ansible role"
+Tableau_API_Version: "{{ Tableau_API_Version }}"
+# "This is generated in another ansible role"
+Tableau_Authentication_Token: "{{ Tableau_Authentication_Token }}"
+Environment: 
+  - 'Development',
+  - 'UAT',
+  - 'Production'
