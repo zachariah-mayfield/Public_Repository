@@ -1,1 +1,7 @@
-###
+Tableau_API_UserName: "CyberArk_UserName"
+Tableau_API_Password: "CyberArk_Password"
+TableauServerName: "Your-Company-Tableau-Server-Name"
+Environment: 
+  - 'Development',
+  - 'UAT',
+  - 'Production'
