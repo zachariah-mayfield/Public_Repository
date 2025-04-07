@@ -1,0 +1,4 @@
+Tableau_Users: "{{ Tableau_Users_Response.json.users.group }}"
+Tableau_User_Info: "{{ Tableau_Users_Response.json.users.group | selectattr('name', 'search', 'Tableau-Company-User-Name' }}"
+Tableau_User_Name: "{{ (Tableau_Users_Response.json.users.group | selectattr('name', 'search', 'Tableau-Company-User-Name' | first).name }}"
+Tableau_User_ID: "{{ (Tableau_Users_Response.json.users.group | selectattr('name', 'search', 'Tableau-Company-User-Name' | first).id }}"
