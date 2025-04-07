@@ -16,14 +16,14 @@
         #body_format: json
         validate_certs: false
         return_content: true
-      register: Tableau_Sites
-      failed_when: Tableau_Sites.status !=200
+      register: Tableau_Sites_Response
+      failed_when: Tableau_Sites_Response.status !=200
 
     - name: Set Ansible Fact Tableau Sites Fact(s).
       ansible.builtin.set_fact:
-        Tableau_Sites: "{{ Tableau_Sites.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' }}"
-        Tableau_Site_Info: "{{ Tableau_Sites.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' }}"
-        Tableau_Sites_Name: "{{ (Tableau_Sites.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).name }}"
-        Tableau_Sites_ID: "{{ (Tableau_Sites.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).id }}"
+        Tableau_Sites: "{{ Tableau_Sites_Response.json.sites.site }}"
+        Tableau_Site_Info: "{{ Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' }}"
+        Tableau_Sites_Name: "{{ (Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).name }}"
+        Tableau_Sites_ID: "{{ (Tableau_Sites_Response.json.sites.site | selectattr('name', 'search', 'Tableau-Company-Site-Name' | first).id }}"
       delegate_to: localhost
       run_once: true
