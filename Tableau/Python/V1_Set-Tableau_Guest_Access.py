@@ -24,72 +24,50 @@ if not is_admin():
     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, f'"{script}" {params}', None, 1)
     sys.exit()
 
-# === Configuration ===
-TableauServerName = "your-tableau-server-name"
-Environment = "Development"  # 'Development', 'UAT', 'Production'
+# Example placeholder values (replace with your actual logic)
+TableauServerName = "Your-Company-Tableau-Server-Name"
+Environment = "Development"
 TableauServerAPI_Version = "3.18"
-Tableau_Group_Name = "Your-Group-Name"
-Tableau_Site_Role = "Viewer"  # Could also be "Explorer", "Creator"
+Tableau_Site_Guest_Access_State = True
 
-# === Mock Token/SiteID Retrieval ===
 def get_tableau_api_token():
-    # Replace with actual token fetching logic
     return "your_tableau_auth_token"
 
 def get_tableau_site_id():
-    # Replace with actual site ID fetching logic
     return "your_site_id"
 
-# === Create AD Group ===
-def new_tableau_ad_group(token, site_id, group_name, site_role, server_name, environment, api_version):
+def set_tableau_guest_access(token, site_id, guest_access_enabled, server_name, environment, api_version):
     try:
         headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
+            "Content-Type": "application/xml",
             "X-Tableau-Auth": token
         }
 
-        url = f"https://{server_name}.{environment}.Company-Domain.com/api/{api_version}/sites/{site_id}/groups"
+        url = f"https://{server_name}.{environment}.Company-Domain.com/api/{api_version}/sites/{site_id}"
 
-        payload = {
-            "group": {
-                "name": group_name,
-                "import": {
-                    "source": "ActiveDirectory",
-                    "domainName": "Company-Domain.com",
-                    "grantLicenseMode": "onSync",
-                    "siteRole": site_role
-                }
-            }
-        }
+        body = f"""<tsRequest>
+  <site guestAccessEnabled="{str(guest_access_enabled).lower()}" />
+</tsRequest>"""
 
-        response = requests.post(url, headers=headers, json=payload)
-
-        if response.status_code == 409:
-            logging.warning(f"Group '{group_name}' already exists.")
-            print(f"Group '{group_name}' already exists.")
-            return None
-
+        response = requests.put(url, headers=headers, data=body)
         response.raise_for_status()
-        group_info = response.json().get("group", {})
-        logging.info(f"Group created: {group_info}")
-        return group_info
-
+        logging.info(f"Guest access update response: {response.text}")
+        return response.text
     except requests.exceptions.RequestException as e:
         logging.error(f"Request failed: {e}")
+        if e.response is not None:
+            return e.response.text
         sys.exit(1)
 
-# === Run ===
+# Run the function
 token = get_tableau_api_token()
 site_id = get_tableau_site_id()
-created_group = new_tableau_ad_group(
+
+set_tableau_guest_access(
     token,
     site_id,
-    Tableau_Group_Name,
-    Tableau_Site_Role,
+    Tableau_Site_Guest_Access_State,
     TableauServerName,
     Environment,
     TableauServerAPI_Version
 )
-
-# Optional: print(created_group)
