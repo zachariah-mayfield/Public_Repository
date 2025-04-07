@@ -21,6 +21,11 @@ Tableau_Group_Info: "{{ Tableau_Groups_Response.json.groups.group | selectattr('
 Tableau_Group_Name: "{{ (Tableau_Groups_Response.json.groups.group | selectattr('name', 'search', 'Tableau-Company-Group-Name' | first).name }}"
 Tableau_Group_ID: "{{ (Tableau_Groups_Response.json.groups.group | selectattr('name', 'search', 'Tableau-Company-Group-Name' | first).id }}"
 
+Tableau_Users: "{{ Tableau_Users_Response.json.users.group }}"
+Tableau_User_Info: "{{ Tableau_Users_Response.json.users.group | selectattr('name', 'search', 'Tableau-Company-User-Name' }}"
+Tableau_User_Name: "{{ (Tableau_Users_Response.json.users.group | selectattr('name', 'search', 'Tableau-Company-User-Name' | first).name }}"
+Tableau_User_ID: "{{ (Tableau_Users_Response.json.users.group | selectattr('name', 'search', 'Tableau-Company-User-Name' | first).id }}"
+
 Environment: 
   - 'Development',
   - 'UAT',
