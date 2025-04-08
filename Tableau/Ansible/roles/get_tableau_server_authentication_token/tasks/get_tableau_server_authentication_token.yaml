@@ -4,7 +4,7 @@
 # The 3.1 in the URL string is just a stab at what the API Version of the Tableau Server could be.  
     - name: Get the API Version of your Tableau Server.
       ansible.builtin.url:
-        url: "https://{{ TableauServerName }}/3.1/serverinfo"
+        url: "https://{{ TableauServerName }}/api/3.1/serverinfo"
         method: GET
         headers: 
           #Content-Type: application/json
