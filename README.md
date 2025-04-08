@@ -13,7 +13,3 @@ Proficient in cloud technologies majoring in (Azure) minoring in (AWS), and (GCP
 Successfully automated infrastructure, streamlined processes, and implemented efficient solutions to complex technical challenges, consistently improving efficiency at large enterprise companies.
 
 ![image](https://github.com/user-attachments/assets/7ad04aa0-d12f-41b8-92e2-8d0a94b14e05)
-
-
-
-![image](https://github.com/user-attachments/assets/938ef5c9-22d9-4b06-bc19-0b73d19edc5b)
