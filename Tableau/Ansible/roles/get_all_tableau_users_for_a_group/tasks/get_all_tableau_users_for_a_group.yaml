@@ -2,7 +2,7 @@
   block:
     - name: Get ALL of the Tableau Users for a Group.
       ansible.builtin.url:
-        url: "https://{{ TableauServerName }}/{{ Tableau_API_Version }}/sites/{{ Tableau_Site_ID }}/groups/{{ Tableau_Group_ID }}/users"
+        url: "https://{{ TableauServerName }}/api/{{ Tableau_API_Version }}/sites/{{ Tableau_Site_ID }}/groups/{{ Tableau_Group_ID }}/users"
         method: GET
         headers: 
           Content-Type: application/json
