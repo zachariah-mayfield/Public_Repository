@@ -2,7 +2,7 @@
   block:
     - name: Get ALL of the Tableau Sites.
       ansible.builtin.url:
-        url: "https://{{ TableauServerName }}/{{ Tableau_API_Version }}/sites"
+        url: "https://{{ TableauServerName }}/api/{{ Tableau_API_Version }}/sites"
         method: GET
         headers: 
           Content-Type: application/json
