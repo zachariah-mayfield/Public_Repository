@@ -1,6 +1,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/zachariah-mayfield/)
+
 [![My LinkedIn](https://github.com/user-attachments/assets/938ef5c9-22d9-4b06-bc19-0b73d19edc5b)](https://www.linkedin.com/in/zachariah-mayfield/)
-[![My LinkedIn](image-url)](link-url)
+
 My name is Zachariah Mayfield. I have been in the IT Industry since 2012. I am a highly skilled and security-conscious Sr. Systems Engineer with extensive experience in designing, automating, engineering, configuring, administering, and monitoring complex IT environments.
 
 Holding a Federal Government Public Trust clearance, I am committed to delivering robust and secure systems that meet stringent regulatory standards. Passionate about leveraging technology to drive efficiency and innovation, I continuously seek opportunities to enhance system performance and reliability.
