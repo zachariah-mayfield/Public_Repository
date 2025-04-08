@@ -27,7 +27,7 @@
 
     - name: Connect to the Tableau API Version using the ansible fact above, and get a Tableau Authentication API Token.
       ansible.builtin.url:
-        url: "https://{{ TableauServerName }}/{{ Tableau_API_Version }}/auth/signin"
+        url: "https://{{ TableauServerName }}/api/{{ Tableau_API_Version }}/auth/signin"
         method: POST
         headers:
           Content-Type: application/json
