@@ -1,3 +1,4 @@
+<!-- This is a hidden comment in the README.md file -->
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/zachariah-mayfield/)
 
 [![My LinkedIn](https://github.com/user-attachments/assets/938ef5c9-22d9-4b06-bc19-0b73d19edc5b)](https://www.linkedin.com/in/zachariah-mayfield/)
