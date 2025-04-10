@@ -31,7 +31,7 @@
 
 - name: Set Ansible Fact
   ansible.builtin.set_fact:
-    AVI_Enabled_Servers: "{{ item.servers | selectattr('enabled') | map(attribute = 'hostname') | map('regex_replace', '($)', ".company-domain.com" | list }}" 
+    AVI_Enabled_Servers: "{{ item.servers | selectattr('enabled') | map(attribute = 'hostname') | map('regex_replace', '($)', '.company-domain.com' | list }}" 
   loop: "{{ AVI_Pool_Response.json.results }}"
   delegate_to: localhost
         
